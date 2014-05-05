@@ -13,5 +13,5 @@ import ua.i.kotionokyurievna.daospring.logic.EmployeeI;
  */
 public interface EmployeeRepository {
     public List<EmployeeI> findAll();
-    public List<EmployeeI> findByName();
+    public List<EmployeeI> findByName( String firstName, String lastName );
 }
