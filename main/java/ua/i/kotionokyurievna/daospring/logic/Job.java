@@ -15,6 +15,10 @@ public class Job implements JobI{
     
     public Job(){}
     
+    public Job ( String jobTitle ){
+        setJobTitle(jobTitle);
+    }
+    
     public Job( String jobTitle, double minSalary, double maxSalary){
         setJobTitle(jobTitle);
         setMinMaxSalary(minSalary, maxSalary);
@@ -54,9 +58,7 @@ public class Job implements JobI{
     public boolean equals ( Object obj ){
         if ( obj != null && getClass() == obj.getClass() ){
             Job other = (Job) obj;
-            return other.jobTitle.equals(jobTitle) &&
-                    other.maxSalary == maxSalary &&
-                    other.minSalary == minSalary;
+            return other.jobTitle.equals(jobTitle);
         } 
         return false;
     }

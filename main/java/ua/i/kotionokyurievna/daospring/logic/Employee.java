@@ -68,7 +68,8 @@ public class Employee implements EmployeeI{
     @Override 
     public String toString(){
         return "Employee " + getFirstName() + " " + getLastName() + ", " +
-                getJob() +  ", " + getDepartment().toString() + ", " + 
+                getJob().getJobTitle() +  ", " + 
+                getDepartment().getDepartmentName() + ", " + 
                 getSalary();
     }
     

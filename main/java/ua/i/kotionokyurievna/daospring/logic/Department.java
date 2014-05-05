@@ -17,6 +17,10 @@ public class Department implements DepartmentI{
         
     }
     
+    public Department ( String depName ){
+        setDepartmentName(departmentName);
+    }
+    
     public Department( String depName, EmployeeI depManager, LocationI depLocation){
         setDepartmentName(departmentName);
         setManager(manager);
