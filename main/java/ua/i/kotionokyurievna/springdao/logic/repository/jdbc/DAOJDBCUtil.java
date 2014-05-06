@@ -1,4 +1,4 @@
-package ua.i.kotionokyurievna.daospring.dao;
+package ua.i.kotionokyurievna.springdao.logic.repository.jdbc;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
