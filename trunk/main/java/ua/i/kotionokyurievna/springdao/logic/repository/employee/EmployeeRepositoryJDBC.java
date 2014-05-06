@@ -85,7 +85,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement
                     ("SELECT e.first_name, e.last_name, e.job_id, e.salary, e.department_id "+
-                    "FROM employees e " +
+                    "FROM employee e " +
                     "WHERE e.first_name = ? AND e.last_name = ?");
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -103,6 +103,30 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
         }
         
         return employees;
+    }
+    
+     @Override
+    public boolean create(EmployeeI employee) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement("INSERT INTO Employee "
+                    + "(first_name, last_name, job_id, salary, department_id) "+
+                    "VALUES (?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setString(3, employee.getJob());
+            preparedStatement.setDouble(4, employee.getSalary());
+            preparedStatement.setInt(5, employee.getDepartment());
+            return preparedStatement.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            DAOJDBCUtil.close(preparedStatement);
+            DAOJDBCUtil.close(connection);
+        }
+        return false;
     }
     
 }

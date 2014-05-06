@@ -19,6 +19,19 @@ public class Employee implements EmployeeI{
     private double salary;
     private int departmentId;
     
+    public Employee(){
+        
+    }
+    
+    public Employee( String firstName, String lastName, String jobId, 
+            double salary, int departmentId){
+        setFirstName(firstName);
+        setLastName(lastName);
+        setJob(jobId);
+        setSalary(salary);
+        setDepartment(departmentId);
+    }
+    
     @Override
     public String getFirstName() {
         return firstName.substring(0);
