@@ -2,18 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.i.kotionokyurievna.daospring.logic;
+package ua.i.kotionokyurievna.springdao.logic.domain.employee;
+
+import ua.i.kotionokyurievna.springdao.logic.domain.department.DepartmentI;
+import ua.i.kotionokyurievna.springdao.logic.domain.job.JobI;
 
 /**
  *
  * @author Kateryna_Reznik
  */
 public class Employee implements EmployeeI{
+
     private String firstName;
     private String lastName;
-    private JobI job;
+    private String jobId;
     private double salary;
-    private DepartmentI department;
+    private int departmentId;
     
     @Override
     public String getFirstName() {
@@ -35,14 +39,20 @@ public class Employee implements EmployeeI{
         this.lastName = lastName.substring(0);
     }
 
-    @Override
-    public JobI getJob() {
-        return job;
+    public String getJob() {
+        return jobId.substring(0);
     }
 
-    @Override
-    public void setJob(JobI job) {
-         this.job = job;
+    public void setJob(String jobId) {
+        this.jobId = jobId.substring(0);;
+    }
+
+    public int getDepartment() {
+        return departmentId;
+    }
+
+    public void setDepartment(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     @Override
@@ -55,21 +65,12 @@ public class Employee implements EmployeeI{
         this.salary = salary;
     }
 
-    @Override
-    public DepartmentI getDepartment() {
-        return department;
-    }
-
-    @Override
-    public void setDepartment(DepartmentI department) {
-        this.department = department;
-    }
-    
+      
     @Override 
     public String toString(){
         return "Employee " + getFirstName() + " " + getLastName() + ", " +
-                getJob().getJobTitle() +  ", " + 
-                getDepartment().getDepartmentName() + ", " + 
+                getJob() +  ", " + 
+                getDepartment() + ", " + 
                 getSalary();
     }
     
@@ -79,7 +80,8 @@ public class Employee implements EmployeeI{
             Employee other = (Employee) obj;
             return other.firstName.equals(firstName) && 
                     other.lastName.equals(lastName) && 
-                    other.job.equals(job) && other.department.equals(department);
+                    other.jobId.equals(jobId) && 
+                    other.departmentId == departmentId;
         }
         return false;
     }

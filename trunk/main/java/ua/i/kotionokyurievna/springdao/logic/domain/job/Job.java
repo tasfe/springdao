@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.i.kotionokyurievna.daospring.logic;
+package ua.i.kotionokyurievna.springdao.logic.domain.job;
 
 /**
  *

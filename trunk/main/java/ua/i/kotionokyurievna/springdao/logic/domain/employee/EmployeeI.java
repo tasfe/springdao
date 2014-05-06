@@ -2,7 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.i.kotionokyurievna.daospring.logic;
+package ua.i.kotionokyurievna.springdao.logic.domain.employee;
+
+import ua.i.kotionokyurievna.springdao.logic.domain.department.DepartmentI;
+import ua.i.kotionokyurievna.springdao.logic.domain.job.JobI;
 
 /**
  *
@@ -13,10 +16,10 @@ public interface EmployeeI {
     public void setFirstName(String firstName);
     public String getLastName();
     public void setLastName(String lastName);
-    public JobI getJob();
-    public void setJob( JobI job );
+    public String getJob();
+    public void setJob( String jobId );
     public double getSalary();
     public void setSalary( double salary );
-    public DepartmentI getDepartment();
-    public void setDepartment(DepartmentI department);
+    public int getDepartment();
+    public void setDepartment(int departmentId);
 }

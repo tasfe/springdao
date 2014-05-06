@@ -1,4 +1,4 @@
-package com.mycompany.springdao;
+package ua.i.kotionokyurievna.springdao;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -6,8 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.i.kotionokyurievna.daospring.dao.EmployeeRepository;
-import ua.i.kotionokyurievna.daospring.logic.EmployeeI;
+import ua.i.kotionokyurievna.springdao.logic.repository.employee.EmployeeRepository;
+import ua.i.kotionokyurievna.springdao.logic.repository.employee.EmployeeRepositoryJDBC;
+import ua.i.kotionokyurievna.springdao.logic.domain.employee.EmployeeI;
 
 /**
  * Hello world!
@@ -29,6 +30,7 @@ public class App
             System.out.println(employee);
         }*/
         
+  
         
         List<EmployeeI> employeeByName = repository.findByName("John", "Chen");
         System.out.println("\n Find JOHN CHEN");

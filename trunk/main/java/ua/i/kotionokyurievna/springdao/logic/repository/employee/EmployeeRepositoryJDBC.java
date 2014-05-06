@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.i.kotionokyurievna.daospring.dao;
+package ua.i.kotionokyurievna.springdao.logic.repository.employee;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +13,11 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ua.i.kotionokyurievna.daospring.logic.EmployeeI;
-import ua.i.kotionokyurievna.daospring.logic.Employee;
-import ua.i.kotionokyurievna.daospring.logic.Department;
-import ua.i.kotionokyurievna.daospring.logic.Job;
+import ua.i.kotionokyurievna.springdao.logic.repository.jdbc.DAOJDBCUtil;
+import ua.i.kotionokyurievna.springdao.logic.domain.employee.EmployeeI;
+import ua.i.kotionokyurievna.springdao.logic.domain.employee.Employee;
+import ua.i.kotionokyurievna.springdao.logic.domain.department.Department;
+import ua.i.kotionokyurievna.springdao.logic.domain.job.Job;
 
 /**
  *
@@ -34,8 +35,6 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
     public EmployeeRepositoryJDBC( DataSource ds ){
         this.ds = ds;
     }
-    
-    
     
     @Override
     public List<EmployeeI> findAll() {
@@ -69,9 +68,9 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
         EmployeeI employee = new Employee();
         employee.setFirstName(resultSet.getString(1));
         employee.setLastName(resultSet.getString(2));
-        employee.setJob(new Job(resultSet.getString(3)));
+        employee.setJob(resultSet.getString(3));
         employee.setSalary(resultSet.getDouble(4));
-        employee.setDepartment(new Department(resultSet.getString(5)));
+        employee.setDepartment(resultSet.getInt(5));
         return employee;
     }
 
