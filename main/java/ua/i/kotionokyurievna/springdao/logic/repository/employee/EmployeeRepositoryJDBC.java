@@ -16,8 +16,6 @@ import org.springframework.stereotype.Repository;
 import ua.i.kotionokyurievna.springdao.logic.repository.jdbc.DAOJDBCUtil;
 import ua.i.kotionokyurievna.springdao.logic.domain.employee.EmployeeI;
 import ua.i.kotionokyurievna.springdao.logic.domain.employee.Employee;
-import ua.i.kotionokyurievna.springdao.logic.domain.department.Department;
-import ua.i.kotionokyurievna.springdao.logic.domain.job.Job;
 
 /**
  *
@@ -119,7 +117,8 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
             preparedStatement.setString(3, employee.getJob());
             preparedStatement.setDouble(4, employee.getSalary());
             preparedStatement.setInt(5, employee.getDepartment());
-            return preparedStatement.execute();
+            preparedStatement.execute();
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
