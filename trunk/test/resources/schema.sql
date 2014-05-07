@@ -1,4 +1,4 @@
-CREATE TABLE Employee(
+CREATE TABLE Employees(
     id IDENTITY,
     first_name varchar(30),
     last_name varchar(30),

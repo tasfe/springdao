@@ -46,9 +46,9 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement
-                    ("SELECT employees.first_name, employees.last_name, jobs.job_title, employees.salary, departments.department_name "+
-                    "FROM jobs, employees, departments " +
-                    "WHERE employees.department_id = departments.department_id AND employees.job_id = jobs.job_id");
+                    ("SELECT e.first_name, e.last_name, e.job_id, " +
+                             "e.salary, e.department_id "+
+                    "FROM employees e ");
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 employees.add(map(resultSet));
@@ -85,7 +85,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement
                     ("SELECT e.first_name, e.last_name, e.job_id, e.salary, e.department_id "+
-                    "FROM employee e " +
+                    "FROM employees e " +
                     "WHERE e.first_name = ? AND e.last_name = ?");
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -111,7 +111,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository{
         PreparedStatement preparedStatement = null;
         try {
             connection = ds.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT INTO Employee "
+            preparedStatement = connection.prepareStatement("INSERT INTO Employees "
                     + "(first_name, last_name, job_id, salary, department_id) "+
                     "VALUES (?, ?, ?, ?, ?)");
             preparedStatement.setString(1, employee.getFirstName());
