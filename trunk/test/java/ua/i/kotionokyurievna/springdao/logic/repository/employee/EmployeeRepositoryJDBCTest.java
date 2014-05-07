@@ -30,7 +30,8 @@ public class EmployeeRepositoryJDBCTest extends DAOTestsTemplate {
     @Test
     public void testCreateStudentNoExceptions() {
         EmployeeI employee = new Employee("John", "Pain", "IT", 430.00, 2);                
-        employeeRepository.create(employee);
+        boolean fl = employeeRepository.create(employee);
+        Assert.assertEquals(true, fl);
     }
     /**
      * Test of findAll method, of class EmployeeRepositoryJDBC.
@@ -42,7 +43,7 @@ public class EmployeeRepositoryJDBCTest extends DAOTestsTemplate {
     }
     
     @Test
-    public void testFindAllSeveralEmployeesInDatabaseExpectedRespectedListSize() {
+    public void testFindAllSeveralEmployeesInDatabaseExpectedRespectivelyListSize() {
         EmployeeI employee1 = new Employee("John", "Pain", "IT", 430.00, 2);
         EmployeeI employee2 = new Employee("John", "Pain", "Robot", 470.00, 1);
         EmployeeI employee3 = new Employee("John", "Pain", "Supp", 370.00, 3);

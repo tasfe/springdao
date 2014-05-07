@@ -46,5 +46,9 @@
     <bean name="employeeRepository" class="ua.i.kotionokyurievna.springdao.logic.repository.employee.EmployeeRepositoryJDBC">
         <constructor-arg ref="mainDataSource"/>       
     </bean>
+    
+    <bean name="locationRepository" class="ua.i.kotionokyurievna.springdao.logic.repository.location.LocationRepositoryJDBC">
+        <constructor-arg ref="mainDataSource"/>       
+    </bean>
 
 </beans>
