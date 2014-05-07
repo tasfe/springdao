@@ -25,10 +25,10 @@ public class App
         
         System.out.println("All ");
         EmployeeRepository repository = appCtx.getBean("employeeRepository", EmployeeRepository.class);
-        /*List<EmployeeI> employees = repository.findAll();
+        List<EmployeeI> employees = repository.findAll();
         for (EmployeeI employee : employees) {
             System.out.println(employee);
-        }*/
+        }
         
   
         
