@@ -23,31 +23,85 @@ public class EmployeeRepositoryJDBCTest extends DAOTestsTemplate {
         
     @Before
     public void clearDB(){
-        jdbcTemplate.execute("TRUNCATE TABLE Employee");
+        jdbcTemplate.execute("TRUNCATE TABLE Employees");
     }    
-    /**
-     * Test of findAll method, of class EmployeeRepositoryJDBC.
-     */
+    
     
     @Test
     public void testCreateStudentNoExceptions() {
         EmployeeI employee = new Employee("John", "Pain", "IT", 430.00, 2);                
         employeeRepository.create(employee);
     }
+    /**
+     * Test of findAll method, of class EmployeeRepositoryJDBC.
+     */
+    @Test
+    public void testFindAllNoOneNameInDatabaseExpectedListSize0() {
+         List<EmployeeI> actualResult = employeeRepository.findAll();
+         Assert.assertEquals(0, actualResult.size());
+    }
     
     @Test
-    public void testFindAll() {
-        
+    public void testFindAllSeveralEmployeesInDatabaseExpectedRespectedListSize() {
+        EmployeeI employee1 = new Employee("John", "Pain", "IT", 430.00, 2);
+        EmployeeI employee2 = new Employee("John", "Pain", "Robot", 470.00, 1);
+        EmployeeI employee3 = new Employee("John", "Pain", "Supp", 370.00, 3);
+        employeeRepository.create(employee1);
+        employeeRepository.create(employee2);
+        employeeRepository.create(employee3); 
+        List<EmployeeI> actualResult = employeeRepository.findAll();
+         Assert.assertEquals(3, actualResult.size());
     }
+    
 
     /**
      * Test of findByName method, of class EmployeeRepositoryJDBC.
      */
     @Test
-    public void testFindByName() {
+    public void testFindByNameWhen1SuchNameInDatabaseExpectedListSize1() {
+        EmployeeI employee = new Employee("John", "Pain", "IT", 430.00, 2);                
+        employeeRepository.create(employee);
         
-        List<EmployeeI> actualResult = employeeRepository.findByName("ABC", "BC");
-        Assert.assertEquals(0, actualResult.size());
+        List<EmployeeI> actualResult = employeeRepository.findByName("John", "Pain");
+        Assert.assertEquals(1, actualResult.size());        
+    }
+    
+    @Test
+    public void testFindByNameWhenSeveralTheseNamesInDatabaseExpectedListSizeMore1() {
+        EmployeeI employee1 = new Employee("John", "Pain", "IT", 430.00, 2);
+        EmployeeI employee2 = new Employee("John", "Pain", "Robot", 470.00, 1);
+        EmployeeI employee3 = new Employee("John", "Pain", "Supp", 370.00, 3);
+        employeeRepository.create(employee1);
+        employeeRepository.create(employee2);
+        employeeRepository.create(employee3);
         
+        List<EmployeeI> actualResult = employeeRepository.findByName("John", "Pain");
+        Assert.assertEquals(3, actualResult.size());        
+    }
+    
+    @Test
+    public void testFindByNameFirstNameIsInDatabaseButNotSecondExpectedListSize0() {
+        EmployeeI employee1 = new Employee("John", "Retro", "IT", 430.00, 2);
+        EmployeeI employee2 = new Employee("John", "Joy", "Robot", 470.00, 1);
+        EmployeeI employee3 = new Employee("John", "Happy", "Supp", 370.00, 3);
+        employeeRepository.create(employee1);
+        employeeRepository.create(employee2);
+        employeeRepository.create(employee3);
+        
+        List<EmployeeI> actualResult = employeeRepository.findByName("John", "Pain");
+        Assert.assertEquals(0, actualResult.size());        
+    }
+    
+    @Test
+    public void testFindByNameNoSuchNameIsInDatabaseExpectedListSize0() {
+        EmployeeI employee1 = new Employee("Sasha", "Pain", "IT", 430.00, 2);
+        EmployeeI employee2 = new Employee("John", "Joy", "Robot", 470.00, 1);
+        EmployeeI employee3 = new Employee("Kira", "Happy", "Supp", 370.00, 3);
+        employeeRepository.create(employee1);
+        employeeRepository.create(employee2);
+        employeeRepository.create(employee3);
+        
+        List<EmployeeI> actualResult = employeeRepository.findByName("John", "Pain");
+        Assert.assertEquals(0, actualResult.size());        
     }
 }
