@@ -7,12 +7,9 @@ CREATE TABLE Employees(
     department_id int
 );
 
-CREATE TABLE Locations(
+CREATE TABLE Jobs(
     id IDENTITY,
-    street_address varchar(40),
-    postal_code varchar(12),
-    city varchar(30),
-    state_province varchar(25),
-    country_id varchar(2)
+    minSalary double;
+    maxSalary double;
 );
 

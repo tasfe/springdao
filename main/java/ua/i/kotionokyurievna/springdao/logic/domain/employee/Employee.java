@@ -4,7 +4,6 @@
  */
 package ua.i.kotionokyurievna.springdao.logic.domain.employee;
 
-import ua.i.kotionokyurievna.springdao.logic.domain.department.DepartmentI;
 import ua.i.kotionokyurievna.springdao.logic.domain.job.JobI;
 
 /**

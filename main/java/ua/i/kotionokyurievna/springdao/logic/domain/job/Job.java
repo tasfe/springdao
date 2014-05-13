@@ -9,6 +9,7 @@ package ua.i.kotionokyurievna.springdao.logic.domain.job;
  * @author Kateryna_Reznik
  */
 public class Job implements JobI{
+    private int jobId;
     private String jobTitle;
     private double minSalary;
     private double maxSalary;
