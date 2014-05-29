@@ -15,7 +15,7 @@ public class Employee implements EmployeeI{
     private String firstName;
     private String lastName;
     private String jobId;
-    private double salary;
+    private Double salary;
     private int departmentId;
     
     public Employee(){

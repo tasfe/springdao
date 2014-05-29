@@ -14,5 +14,6 @@ import ua.i.kotionokyurievna.springdao.logic.domain.job.JobI;
 public interface JobRepository {
     public boolean create( JobI job );
     public List<JobI> findByTitle( String jobTitle );
-    public List<JobI> findBySalary( double salary );
+    public List<JobI> findBySalary( Double salary );
+    public JobI findById( String jobId );
 }

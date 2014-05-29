@@ -21,7 +21,7 @@ import ua.i.kotionokyurievna.springdao.logic.repository.jdbc.DAOJDBCUtil;
  *
  * @author Kateryna_Reznik
  */
-@Repository( "employeeRepository")
+@Repository( "jobRepository")
 public class JobRepositoryJDBC implements JobRepository{
     
     @Autowired
@@ -66,7 +66,7 @@ public class JobRepositoryJDBC implements JobRepository{
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement
-                    ("SELECT j.job_id, j.job_title, j.min_salary, " +
+                    ("SELECT j.job_title, j.min_salary, " +
                     "j.max_salary "+
                     "FROM jobs j " +
                     "WHERE j.job_title = ?");
@@ -87,23 +87,23 @@ public class JobRepositoryJDBC implements JobRepository{
         return jobs;
     }
 
-    public List<JobI> findBySalary(double salary) {
+    @Override
+    public List<JobI> findBySalary(Double salary) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<JobI> jobs = new ArrayList<JobI>();
-
+        
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement
-                    ("SELECT j.job_id, j.job_title, j.min_salary, " +
+                    ("SELECT j.job_title, j.min_salary, " +
                     "j.max_salary "+
                     "FROM jobs j " +
-                    "WHERE j.min_salary >= ? AND j.max_salary <= ?");
+                    "WHERE j.min_salary <= ? AND j.max_salary >= ? ");
             preparedStatement.setDouble(1, salary);
             preparedStatement.setDouble(2, salary);
-            resultSet = preparedStatement.executeQuery();
-                      
+            resultSet = preparedStatement.executeQuery();    
             while (resultSet.next()) {
                 jobs.add(map(resultSet));
             }
@@ -118,10 +118,42 @@ public class JobRepositoryJDBC implements JobRepository{
         return jobs;
     }
     
+    public JobI findById(String jobId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        JobI job = new Job();
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement
+                    ("SELECT j.job_title, j.min_salary, " +
+                    "j.max_salary "+
+                    "FROM jobs j " +
+                    "WHERE j.job_id = ?");
+            preparedStatement.setString(1, jobId);
+            resultSet = preparedStatement.executeQuery();
+                      
+            if (resultSet.next()) {
+                job = map(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DAOJDBCUtil.close(resultSet);
+            DAOJDBCUtil.close(preparedStatement);
+            DAOJDBCUtil.close(connection);
+        }
+        
+        return job;
+    }
+    
+    
+    
     private JobI map(ResultSet resultSet) throws SQLException {
         JobI job = new Job();
         job.setJobTitle(resultSet.getString(1));
-        job.setMinMaxSalary(resultSet.getDouble(2), resultSet.getDouble(2));
+        job.setMinMaxSalary(resultSet.getDouble(2), resultSet.getDouble(3));
         return job;
     }
     

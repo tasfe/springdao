@@ -8,8 +8,9 @@ CREATE TABLE Employees(
 );
 
 CREATE TABLE Jobs(
-    id IDENTITY,
-    minSalary double;
-    maxSalary double;
+    job_id IDENTITY,
+    job_title varchar(20),
+    min_salary float,
+    max_salary float
 );
 
