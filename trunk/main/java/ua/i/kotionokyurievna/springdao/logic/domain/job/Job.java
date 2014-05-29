@@ -11,47 +11,44 @@ package ua.i.kotionokyurievna.springdao.logic.domain.job;
 public class Job implements JobI{
     private int jobId;
     private String jobTitle;
-    private double minSalary;
-    private double maxSalary;
+    private Double minSalary;
+    private Double maxSalary;
     
     public Job(){}
     
-    public Job ( String jobTitle ){
-        setJobTitle(jobTitle);
-    }
-    
-    public Job( String jobTitle, double minSalary, double maxSalary){
-        setJobTitle(jobTitle);
-        setMinMaxSalary(minSalary, maxSalary);
-        
+     
+    public Job( String jobTitle, Double minSalary, Double maxSalary){
+        this.jobTitle = jobTitle;
+        this.maxSalary = maxSalary;
+        this.minSalary = minSalary;
     }
 
     @Override
     public String getJobTitle() {
-        return jobTitle.substring(0);
+        return jobTitle;
     }
 
     @Override
     public void setJobTitle(String name) {
-        this.jobTitle = name.substring(0);
+        this.jobTitle = name;
     }
 
     @Override
-    public double getMinSalary() {
+    public Double getMinSalary() {
         return minSalary;
     }
 
     @Override
-    public boolean setMinMaxSalary(double minSalary, double maxSalary) {
-        if ( ( minSalary <= maxSalary ) && ( minSalary >= 0 ) && ( maxSalary <= 0 ) ){
-            this.minSalary = minSalary;
-            this.maxSalary = maxSalary;
-        }
-        return false;
+    public boolean setMinMaxSalary(Double minSalary, Double maxSalary) {
+        
+                this.minSalary = minSalary;
+                this.maxSalary = maxSalary;
+           
+        return true;
     }
 
     @Override
-    public double getMaxSalary() {
+    public Double getMaxSalary() {
         return maxSalary;
     }
     

@@ -11,7 +11,7 @@ package ua.i.kotionokyurievna.springdao.logic.domain.job;
 public interface JobI {
     public String getJobTitle();
     public void setJobTitle( String name );
-    public double getMinSalary();
-    public boolean setMinMaxSalary( double minSalary, double maxSalary );
-    public double getMaxSalary();
+    public Double getMinSalary();
+    public boolean setMinMaxSalary( Double minSalary, Double maxSalary );
+    public Double getMaxSalary();
 }
