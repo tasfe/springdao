@@ -14,7 +14,10 @@ public class Job implements JobI{
     private Double minSalary;
     private Double maxSalary;
     
-    public Job(){}
+    public Job(){
+        minSalary = new Double(0.0);
+        maxSalary = new Double(0.0);
+    }
     
      
     public Job( String jobTitle, Double minSalary, Double maxSalary){
@@ -40,11 +43,14 @@ public class Job implements JobI{
 
     @Override
     public boolean setMinMaxSalary(Double minSalary, Double maxSalary) {
-        
+        if ( minSalary.doubleValue() <= maxSalary.doubleValue() && 
+                minSalary.doubleValue() >= 0 &&
+                maxSalary.doubleValue() >= 0){
                 this.minSalary = minSalary;
                 this.maxSalary = maxSalary;
-           
-        return true;
+                return true;
+        } 
+        return false;
     }
 
     @Override
